@@ -97,6 +97,35 @@ a {
     font-weight: 600;
 }
 
+.side-nav {
+    position: fixed;
+    top: 110px;
+    left: 20px;
+    z-index: 90;
+    width: 150px;
+    padding: 14px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    box-shadow: var(--shadow);
+}
+
+.side-nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.side-nav .nav-link {
+    font-size: 0.9rem;
+}
+
+main,
+footer#cta {
+    margin-left: 190px;
+}
+
 .hero {
     padding-top: 74px;
 }
@@ -301,6 +330,15 @@ a {
 }
 
 @media (max-width: 960px) {
+    .side-nav {
+        display: none;
+    }
+
+    main,
+    footer#cta {
+        margin-left: 0;
+    }
+
     .hero-grid,
     .info-grid,
     .review-grid {
