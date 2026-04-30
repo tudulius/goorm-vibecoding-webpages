@@ -1,14 +1,126 @@
-<button id="menu-toggle" class="menu-toggle">
-    <i class="fa-solid fa-bars"></i>
-</button>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXTAI Studio | AI 에이전트 기반 현대적인 앱 빌드</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
 
-<div id="sidebar" class="sidebar">
-    <button id="close-btn" class="close-btn">&times;</button>
-    <ul class="sidebar-links">
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#value-prop">Value</a></li>
-        <li><a href="#agentic-flow">Workflow</a></li>
-        <li><a href="#features">Services</a></li>
-        <li><a href="#showcase">Showcase</a></li>
-    </ul>
-</div>
+    <button id="menu-toggle" class="menu-toggle">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div id="sidebar" class="sidebar">
+        <button id="close-btn" class="close-btn">&times;</button>
+        <ul class="sidebar-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#philosophy">Philosophy</a></li>
+            <li><a href="#value-prop">Value</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#agentic-flow">Workflow</a></li>
+        </ul>
+    </div>
+
+    <nav id="navbar">
+        <div class="logo">NEXTAI Studio</div>
+        <ul class="nav-links">
+            <li><a href="#hero" class="active">Home</a></li>
+            <li><a href="#philosophy">Philosophy</a></li>
+            <li><a href="#value-prop">Value</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#agentic-flow">Workflow</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        
+        <section id="hero">
+            <div class="container">
+                <h1>코딩의 미래,<br>NEXTAI Studio가 에이전트와 함께 만듭니다.</h1>
+                <p>AI 에이전트를 이용한 현대적인 애플리케이션 빌드. 당신의 비즈니스 아이디어를 가장 빠르고 완벽하게 현실로 구현합니다.</p>
+                <a href="#services" class="btn-primary">프로젝트 시작하기</a>
+            </div>
+        </section>
+
+        <section id="philosophy" class="bg-surface">
+            <div class="container">
+                <h2>코드는 AI가 쓰지만, 흐름(Vibe)은 엔지니어가 잡는다.</h2>
+                <p class="section-desc">우리는 단순한 자동화를 넘어섭니다. AI의 압도적인 생산성에 신인철 엔지니어의 깊이 있는 통찰력을 더해, 완벽한 인간 중심의 설계를 완성합니다. 기술의 차가움을 넘어 사용자 경험의 따뜻한 흐름을 잡아냅니다.</p>
+            </div>
+        </section>
+
+        <section id="value-prop">
+            <div class="container">
+                <h2>압도적인 개발 속도 혁신,<br>타협 없는 정확도 향상.</h2>
+                <p class="section-desc">다중 AI 에이전트의 교차 검증을 통해 코드의 무결성을 보장하며, 기획부터 배포까지의 모든 사이클을 혁신적으로 단축합니다. 가장 빠르면서도 가장 안정적인 소프트웨어 엔지니어링을 경험해 보세요.</p>
+                <div class="grid-3">
+                    <div class="card">
+                        <i class="fa-solid fa-bolt"></i>
+                        <h3>개발 속도 혁신</h3>
+                        <p>기획부터 배포까지의 사이클을 압도적으로 단축합니다.</p>
+                    </div>
+                    <div class="card">
+                        <i class="fa-solid fa-bullseye"></i>
+                        <h3>정확도 향상</h3>
+                        <p>멀티 에이전트 교차 검증을 통해 코드의 무결성을 확보합니다.</p>
+                    </div>
+                    <div class="card">
+                        <i class="fa-solid fa-users"></i>
+                        <h3>인간 중심의 설계</h3>
+                        <p>에이전트가 놓치는 미세한 Vibe를 엔지니어가 직접 교정합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="bg-surface">
+            <div class="container">
+                <h2>비즈니스 도메인에 최적화된 맞춤형 솔루션 제공</h2>
+                <div class="grid-3">
+                    <div class="card">
+                        <h3>커스텀 AI 에이전트 구축</h3>
+                        <p>사내 업무 효율을 극대화하는 전용 파이프라인 설계.</p>
+                    </div>
+                    <div class="card">
+                        <h3>앱 현대화 리뉴얼</h3>
+                        <p>레거시 시스템을 최신 AI 기반 스택으로 완벽하게 마이그레이션.</p>
+                    </div>
+                    <div class="card">
+                        <h3>바이브코딩 컨설팅</h3>
+                        <p>사내 개발팀이 에이전틱 워크플로우를 내재화할 수 있도록 전문적인 노하우 전수.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="agentic-flow">
+            <div class="container">
+                <h2>에이전틱 워크플로우 (Agentic Flow)</h2>
+                <div class="terminal">
+                    <div class="terminal-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                        <span class="title">agent-thought-process.sh</span>
+                    </div>
+                    <div class="terminal-body" id="typing-container">
+                        </div>
+                </div>
+            </div>
+        </section>
+
+        <footer id="cta">
+            <div class="container">
+                <h2>당신의 비즈니스에 AI 엔진을 장착하세요.</h2>
+                <p>NEXTAI Studio의 엔지니어와 에이전트들이 준비되어 있습니다.</p>
+                <button class="btn-primary" style="margin-top:20px;">무료 컨설팅 신청</button>
+            </div>
+        </footer>
+
+    </main> <script src="script.js"></script>
+</body>
+</html>
