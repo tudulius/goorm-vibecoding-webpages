@@ -1,0 +1,65 @@
+/* 햄버거 메뉴 버튼 (기본적으로 숨기거나, 모바일에서만 보이게 조절 가능) */
+.menu-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 999;
+    color: var(--text-color, #1D1D1D);
+}
+
+/* 사이드바 기본 스타일 (화면 우측 밖으로 숨김) */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -300px; /* 사이드바 너비만큼 화면 밖으로 밀어냄 */
+    width: 300px;
+    height: 100vh;
+    background-color: var(--surface-color, #FFFFFF);
+    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 1001; /* 다른 요소들보다 최상단에 배치 */
+    padding: 30px 20px;
+    transition: right 0.4s ease; /* 부드러운 슬라이드 애니메이션 */
+}
+
+/* 사이드바가 열렸을 때 (JavaScript로 이 클래스를 토글합니다) */
+.sidebar.open {
+    right: 0;
+}
+
+/* 닫기 버튼 */
+.close-btn {
+    font-size: 36px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: block;
+    margin-left: auto;
+    margin-bottom: 30px;
+    color: var(--text-color);
+}
+
+/* 사이드바 내부 링크 */
+.sidebar-links {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-links li {
+    margin-bottom: 20px;
+}
+
+.sidebar-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.sidebar-links a:hover {
+    color: var(--accent-color, #D97757);
+}
