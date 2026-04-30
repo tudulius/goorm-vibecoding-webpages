@@ -10,10 +10,6 @@
 </head>
 <body>
 
-    <button id="menu-toggle" class="menu-toggle">
-        <i class="fa-solid fa-bars"></i>
-    </button>
-
     <div id="sidebar" class="sidebar">
         <button id="close-btn" class="close-btn">&times;</button>
         <ul class="sidebar-links">
@@ -38,6 +34,18 @@
 
     <main class="main-content">
         
+        <header id="top-bar">
+            <div class="top-bar-left">
+                <button id="menu-toggle" class="menu-toggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <span id="current-page-title" class="page-title">Home</span>
+            </div>
+            <div class="top-bar-right">
+                <span class="status-dot"></span> All Systems Operational
+            </div>
+        </header>
+
         <section id="hero">
             <div class="container">
                 <h1>코딩의 미래,<br>NEXTAI Studio가 에이전트와 함께 만듭니다.</h1>
@@ -121,6 +129,8 @@
             </div>
         </footer>
 
-    </main> <script src="script.js"></script>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>

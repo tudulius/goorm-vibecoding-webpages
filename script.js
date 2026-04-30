@@ -18,30 +18,42 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     sidebarLinks.forEach(link => {
         link.addEventListener('click', () => {
-            sidebar.classList.remove('open'); // 메뉴 클릭 시 사이드바 닫기
+            sidebar.classList.remove('open'); 
         });
     });
 
-    // --- 2. 스크롤 네비게이션 하이라이트 ---
+    // --- 2. 스크롤 네비게이션 하이라이트 및 탑 바 타이틀 연동 ---
     const sections = document.querySelectorAll('section');
     const navLinksDesktop = document.querySelectorAll('.nav-links a');
+    const pageTitle = document.getElementById('current-page-title'); // 탑 바 텍스트
 
     window.addEventListener('scroll', () => {
         let current = '';
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
-            if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+            // 탑 바 높이(70px)를 고려하여 계산
+            if (pageYOffset >= (sectionTop - sectionHeight / 3 - 70)) {
                 current = section.getAttribute('id');
             }
         });
 
+        // 좌측 사이드바 활성화 상태 변경
         navLinksDesktop.forEach(link => {
             link.classList.remove('active');
             if (link.getAttribute('href').includes(current)) {
                 link.classList.add('active');
             }
         });
+
+        // 🌟 상단 탑 바 타이틀 텍스트 동적 변경
+        let titleText = 'Home';
+        if (current === 'philosophy') titleText = 'Philosophy';
+        else if (current === 'value-prop') titleText = 'Value';
+        else if (current === 'services') titleText = 'Services';
+        else if (current === 'agentic-flow') titleText = 'Workflow';
+        
+        if (pageTitle) pageTitle.textContent = titleText;
     });
 
     // --- 3. 에이전트 워크플로우 타이핑 효과 ---
@@ -72,14 +84,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (charIdx < currentLine.length) {
                 targetEl.innerHTML += currentLine.charAt(charIdx);
                 charIdx++;
-                setTimeout(typeEffect, 30); // 타이핑 속도
+                setTimeout(typeEffect, 30); 
             } else {
                 lineIdx++;
                 charIdx = 0;
-                setTimeout(typeEffect, 700); // 줄바꿈 대기 시간
+                setTimeout(typeEffect, 700); 
             }
         } else {
-            // 커서 깜빡임 추가
             const cursor = document.createElement('span');
             cursor.innerHTML = '█';
             cursor.style.animation = 'blink 1s step-end infinite';
@@ -87,7 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 워크플로우 섹션이 화면에 보일 때 애니메이션 시작
     const observer = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
             typeEffect();
@@ -99,7 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if(agentSection) observer.observe(agentSection);
 });
 
-// 커서 깜빡임 애니메이션 CSS 동적 추가
 const style = document.createElement('style');
 style.innerHTML = `@keyframes blink { 50% { opacity: 0; } }`;
 document.head.appendChild(style);
