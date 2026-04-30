@@ -1,114 +1,54 @@
-document.addEventListener('DOMContentLoaded', () => {
-    
-    // --- 1. 모바일 사이드바 토글 로직 ---
-    const menuToggle = document.getElementById('menu-toggle');
-    const sidebar = document.getElementById('sidebar');
-    const closeBtn = document.getElementById('close-btn');
-    const sidebarLinks = document.querySelectorAll('.sidebar-links a');
+document.addEventListener("DOMContentLoaded", () => {
+    const menuToggle = document.getElementById("menu-toggle");
+    const mainNav = document.getElementById("main-nav");
+    const navLinks = document.querySelectorAll(".nav-link");
+    const sections = document.querySelectorAll("main section, footer#cta");
+    const ctaButton = document.getElementById("cta-button");
+    const ctaFeedback = document.getElementById("cta-feedback");
 
-    if (menuToggle && sidebar) {
-        menuToggle.addEventListener('click', () => {
-            sidebar.classList.add('open');
+    if (menuToggle && mainNav) {
+        menuToggle.addEventListener("click", () => {
+            mainNav.classList.toggle("open");
         });
     }
-    if (closeBtn && sidebar) {
-        closeBtn.addEventListener('click', () => {
-            sidebar.classList.remove('open');
-        });
-    }
-    sidebarLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            sidebar.classList.remove('open'); 
+
+    navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+            if (mainNav) {
+                mainNav.classList.remove("open");
+            }
         });
     });
 
-    // --- 2. 스크롤 네비게이션 하이라이트 및 탑 바 타이틀 연동 ---
-    const sections = document.querySelectorAll('section');
-    const navLinksDesktop = document.querySelectorAll('.nav-links a');
-    const pageTitle = document.getElementById('current-page-title'); // 탑 바 텍스트
-
-    window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            // 탑 바 높이(70px)를 고려하여 계산
-            if (pageYOffset >= (sectionTop - sectionHeight / 3 - 70)) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        // 좌측 사이드바 활성화 상태 변경
-        navLinksDesktop.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').includes(current)) {
-                link.classList.add('active');
-            }
-        });
-
-        // 🌟 상단 탑 바 타이틀 텍스트 동적 변경
-        let titleText = 'Home';
-        if (current === 'philosophy') titleText = 'Philosophy';
-        else if (current === 'value-prop') titleText = 'Value';
-        else if (current === 'services') titleText = 'Services';
-        else if (current === 'agentic-flow') titleText = 'Workflow';
-        
-        if (pageTitle) pageTitle.textContent = titleText;
-    });
-
-    // --- 3. 에이전트 워크플로우 타이핑 효과 ---
-    const typingContainer = document.getElementById('typing-container');
-    const thoughts = [
-        "> Initializing NEXTAI Thinker Agent...",
-        "> Analyzing user requirements and architecture...",
-        "> [OK] Blueprint generated.",
-        "> Handing over to Builder Agent for codebase generation.",
-        "> Resolving dependencies... Done.",
-        "> Waiting for 신인철 엔지니어's Vibe check (Human-in-the-loop)..."
-    ];
-
-    let lineIdx = 0;
-    let charIdx = 0;
-
-    function typeEffect() {
-        if (lineIdx < thoughts.length) {
-            if (charIdx === 0) {
-                const line = document.createElement('div');
-                line.id = `line-${lineIdx}`;
-                typingContainer.appendChild(line);
-            }
-
-            const currentLine = thoughts[lineIdx];
-            const targetEl = document.getElementById(`line-${lineIdx}`);
-
-            if (charIdx < currentLine.length) {
-                targetEl.innerHTML += currentLine.charAt(charIdx);
-                charIdx++;
-                setTimeout(typeEffect, 30); 
-            } else {
-                lineIdx++;
-                charIdx = 0;
-                setTimeout(typeEffect, 700); 
-            }
-        } else {
-            const cursor = document.createElement('span');
-            cursor.innerHTML = '█';
-            cursor.style.animation = 'blink 1s step-end infinite';
-            typingContainer.appendChild(cursor);
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) {
+                    return;
+                }
+                const activeId = entry.target.getAttribute("id");
+                navLinks.forEach((link) => {
+                    const target = link.getAttribute("href");
+                    link.classList.toggle("active", target === `#${activeId}`);
+                });
+            });
+        },
+        {
+            root: null,
+            rootMargin: "-35% 0px -50% 0px",
+            threshold: 0.1
         }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    if (ctaButton && ctaFeedback) {
+        ctaButton.addEventListener("click", () => {
+            ctaFeedback.textContent = "준비 중입니다. 곧 실제 구매 링크가 연결됩니다.";
+            ctaButton.classList.add("clicked");
+            setTimeout(() => {
+                ctaButton.classList.remove("clicked");
+            }, 250);
+        });
     }
-
-    const observer = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
-            typeEffect();
-            observer.disconnect();
-        }
-    }, { threshold: 0.5 });
-
-    const agentSection = document.getElementById('agentic-flow');
-    if(agentSection) observer.observe(agentSection);
 });
-
-const style = document.createElement('style');
-style.innerHTML = `@keyframes blink { 50% { opacity: 0; } }`;
-document.head.appendChild(style);
